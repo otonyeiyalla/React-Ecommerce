@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Lora');
+
+div {
+    font-family: 'Lora', serif;
+    color: black;
+    opacity: 1;
+}
+
+#drinkinfo-title {
+    color: white;
+    font-size: 4em;
+    background-color: coral;
+    text-align: center;
+    margin: 5px;
+}
+
+#add-btn {
+    margin: 5px;
+}
+
+#cancel-btn {
+    margin: 5px;
+    background-color: lightcoral;
+}
+
+#quantity-btn {
+    background-color: coral;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}

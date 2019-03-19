@@ -1,32 +1,111 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,400,900');
+
+/** import '@trendmicro/react-sidenav/dist/react-sidenav.css'; **/
+
+.body {
+    font-family: 'Poppins', sans-serif;
+}
+
+
 .App {
-  text-align: center;
+    text-align: center;
+    min-height: 100vh;
+    /** FOR FONT COLOUR **/
+    color: white;
+
+
+
+    background-image: url('../src/images/background.jpg');
+    background-size: cover;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+    animation: App-logo-spin infinite 20s linear;
+    height: 40vmin;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    /** background-image: url('../src/images/background.jpg');
+  background-size: cover;
+  /** background-color: #282c34; **/
+    min-height: 5vh;
+    display: flex;
+    /** flex-direction: column;
+    
+     **/
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+
+
+    font-family: "Roboto", sans-serif;
 }
 
 .App-link {
-  color: #61dafb;
+    color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+table {
+    width: 100%;
 }
+
+td {
+    width: 50%;
+}
+
+/* .shop-header{
+    font-size: 2em;
+    background-color: orange;
+    position: absolute;
+    table-layout: auto;
+    width: 100%;
+    top: 0px;
+    border-radius: 25px;
+} */
+
+.shop-body {
+    table-layout: auto;
+    background-color: red;
+}
+
+.split {
+
+
+    height: 85%;
+    position: fixed;
+    border-radius: 25px;
+    /*opacity: .5; */
+}
+
+.left {
+    overflow: auto;
+    left: 1em;
+    border: solid red;
+    width: 40%;
+    background-color: antiquewhite;
+}
+
+.right {
+    right: 1em;
+    border: solid green;
+    width: 55%;
+    padding-left: 2px;
+}
+
+.body-component {
+    position: relative;
+    padding-top: 1em;
+}
+
+/*
+#drinks-component {
+    align-content: left;
+}
+
+.drink-component {
+    width: 5em;
+    height: 7em;
+    border-radius: 25px;
+}
+*/

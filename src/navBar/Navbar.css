@@ -1,0 +1,17 @@
+.shop-header {
+    font-size: 2em;
+    background-color: rgba(255, 166, 0, 0.89);
+    table-layout: auto;
+    width: 100%;
+    top: 0px;
+    border-radius: 25px;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+}
+
+td {
+    width: 50%;
+}
