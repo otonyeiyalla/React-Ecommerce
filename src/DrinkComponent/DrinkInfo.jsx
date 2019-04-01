@@ -11,8 +11,8 @@ class DrinkInfo extends Component {
     //Variables declearation
     this.state = {
       //drink: [{ id: 1, value1: "35cl" }, { id: 2, value: "35cl-crate" }],
-      quantity: 0,
-      selectedOption: " ",
+      //quantity: 0,
+      //selectedOption: " ",
       coke: {
         name: "Coke",
         price: 120,
@@ -24,21 +24,23 @@ class DrinkInfo extends Component {
     };
   }
 
-  /**   
-        coke fanta spirit RC lacasara limca pepsi
+  /*
+
+  soft drink - coke fanta sprite RC lacasara limca pepsi
         35cl - 120      
         50cl - 150
 
-        malt, grand malt, dubbic malt
+        malt, grand malt, dubic malt
         pet
 
-        star, heniken, hero, gueness  star out
+       beer - star, heineken, hero, guinness / stout
         can
 
-        water - eva, estizam, geogoer, laseim, 
+        water - eva, estizam, george, laseim, 
         50ml 75ml 1.5L
  **/
 
+  /*
   //Event handler for the radio button
   handleOnChange = changeEvent => {
     this.setState({
@@ -46,7 +48,9 @@ class DrinkInfo extends Component {
     });
     console.log("This works ", changeEvent.target.value);
   };
+*/
 
+  /*
   //Event handler for the positive button
   handleIncrease = () => {
     if (this.state.quantity !== 10) {
@@ -55,7 +59,9 @@ class DrinkInfo extends Component {
       });
     }
   };
+  */
 
+  /*
   //Event handler for the nagative button
   handleDecrease = () => {
     if (this.state.quantity > 0) {
@@ -64,14 +70,17 @@ class DrinkInfo extends Component {
       });
     }
   };
+  */
 
+  /*
   //Check value to change to zero max or number
   CheckValue() {
-    const { quantity } = this.state;
+    const { quantity } = this.props;
     console.log("the val in checkValue: ", quantity);
     if (quantity === 10) return "Max";
     return quantity === 0 ? "Zero" : quantity;
   }
+  */
 
   styles = {
     fontWeight: "bold",
@@ -81,10 +90,13 @@ class DrinkInfo extends Component {
   };
 
   render() {
+    const product = this.props.products;
+    console.log("Props content: ", product[0].size[0].small);
+
     return (
       <div>
         <form>
-          <div id="drinkinfo-title">{this.state.coke.name}</div>
+          <div id="drinkinfo-title">{this.props.products[1].name}</div>
           <Row>
             <Col s={5}>
               <span>
@@ -100,7 +112,7 @@ class DrinkInfo extends Component {
                   <tr>
                     <th data-field="id">Size</th>
                     <th data-field="price">Price</th>
-                    <th data-field="type">Type</th>
+                    <th data-field="crate">Type</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -117,8 +129,8 @@ class DrinkInfo extends Component {
                             type="radio"
                             name="drink-size"
                             value="35cl"
-                            checked={this.state.selectedOption === "35cl"}
-                            onChange={this.handleOnChange}
+                            checked={this.props.onCheck === "35cl"}
+                            onChange={this.props.onChange}
                           />
                           <span>Single 35cl bottle</span>
                         </label>
@@ -129,8 +141,8 @@ class DrinkInfo extends Component {
                             type="radio"
                             name="drink-size"
                             value="35cL-crate"
-                            checked={this.state.selectedOption === "35cL-crate"}
-                            onChange={this.handleOnChange}
+                            checked={this.props.onCheck === "35cL-crate"}
+                            onChange={this.props.onChange}
                           />
                           <span>Crate of bottles</span>
                         </label>
@@ -150,8 +162,8 @@ class DrinkInfo extends Component {
                             type="radio"
                             name="drink-size"
                             value="50cl"
-                            checked={this.state.selectedOption === "50cl"}
-                            onChange={this.handleOnChange}
+                            checked={this.props.onCheck === "50cl"}
+                            onChange={this.props.onChange}
                           />
                           <span>Single 50cl bottle</span>
                         </label>
@@ -162,8 +174,8 @@ class DrinkInfo extends Component {
                             type="radio"
                             name="drink-size"
                             value="50cL-crate"
-                            checked={this.state.selectedOption === "50cL-crate"}
-                            onChange={this.handleOnChange}
+                            checked={this.props.onCheck === "50cL-crate"}
+                            onChange={this.props.onChange}
                           />
                           <span>Crate of bottles</span>
                         </label>
@@ -184,8 +196,8 @@ class DrinkInfo extends Component {
                             name="drink-size"
                             value="3"
                             background-color="orange"
-                            checked={this.state.selectedOption === "3"}
-                            onChange={this.handleOnChange}
+                            checked={this.props.onCheck === "3"}
+                            onChange={this.props.onChange}
                           />
                           <span>Single bottle</span>
                         </label>
@@ -197,8 +209,8 @@ class DrinkInfo extends Component {
                             name="drink-size"
                             value="4"
                             background-color="orange"
-                            checked={this.state.selectedOption === "4"}
-                            onChange={this.handleOnChange}
+                            checked={this.props.onCheck === "4"}
+                            onChange={this.props.onChange}
                           />
                           <span>Crate of bottles</span>
                         </label>
@@ -217,7 +229,11 @@ class DrinkInfo extends Component {
                 ADD DRINK<Icon right>add</Icon>
               </Button>
 
-              <Button waves="red" id="cancel-btn">
+              <Button
+                waves="red"
+                id="cancel-btn"
+                onClick={this.props.isToggleOn}
+              >
                 CANCEL<Icon right>cancel</Icon>
               </Button>
             </div>
@@ -227,17 +243,17 @@ class DrinkInfo extends Component {
               Quantity
               <div>
                 <button
-                  onClick={this.handleIncrease}
+                  onClick={this.props.onIncrease}
                   className="chip"
                   style={{ backgroundColor: "lightgreen" }}
                 >
                   <Icon small>add</Icon>
                 </button>
                 <span className="chip" id="quantity-btn">
-                  {this.CheckValue()}
+                  {this.props.onCheckValue}
                 </span>
                 <button
-                  onClick={this.handleDecrease}
+                  onClick={this.props.onDecrease}
                   className="chip"
                   style={{ backgroundColor: "lightcoral" }}
                 >
@@ -255,8 +271,6 @@ class DrinkInfo extends Component {
 export default DrinkInfo;
 
 /**
- * 
-
                         <label>
                           <input
                             type="radio"
@@ -294,5 +308,5 @@ export default DrinkInfo;
         </div>
 
  
- * 
- */
+
+ **/

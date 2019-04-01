@@ -1,214 +1,129 @@
 import React, { Component } from "react";
-//import DrinkInfo from "./DrinkComponent/DrinkInfo";
-import { Icon, Input, Row } from "react-materialize";
-//import Modal from "react-materialize/lib/Modal";
+import { Icon, Row, Col } from "react-materialize";
+import image from "./images/no_image.png";
 
-function OrderNumber() {
-  let ordernumber = Math.random();
-  ordernumber *= 100000;
-  ordernumber = Math.floor(ordernumber);
-  console.log("Order number:", ordernumber);
-  return ordernumber;
-}
-document.addEventListener("mousewheel", onmousewheel, true);
+const datas = [
+  {
+    category: "soft drink",
+    name: "Coke",
+    size: [
+      { size: "35cl", price: "120", crate: "35cl Crate", cprice: "1200" },
+      { size: "50cl", price: "150", crate: "50cl Crate", cprice: "1500" }
+    ],
+    description: "about drink"
+  }
+  /* {
+    category: "soft drink",
+    name: "Fanta",
+    size: [
+      { size: "35cl", price: "120", crate: "35cl Crate", cprice: "1200" },
+      { size: "50cl", price: "150", crate: "50cl Crate", cprice: "1500" }
+    ],
+    description: "about drink"
+  },
+  {
+    category: "water",
+    name: "Eva",
+    size: [
+      { size: "50ml", price: "100", crate: "50ml-Crate", cprice: "1000" },
+      { size: "75ml", price: "120", crate: "75ml-Crate", cprice: "1200" },
+      { size: "1.5L", price: "150", crate: "1.5L-Crate", cprice: "1500" }
+    ],
+    description: "about drink"
+  } */
+];
+
 class Test extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      select: "",
-      date: new Date(),
-      isToggleOn: ""
+      selectedOption: " "
     };
   }
 
-  handleOnSelect = event => {
+  //Event handler for the radio button
+  handleOnChange = changeEvent => {
     this.setState({
-      select: event.target.value
+      selectedOption: changeEvent.target.value
     });
-    this.setState(state => ({
-      isToggleOn: !state.isToggleOn
-    }));
-    console.log("Option: ", event.target.value);
+    console.log("This works ", changeEvent.target.value);
   };
 
-  /* 
-    addEventListener(document, "touchstart", function(e) {
-    console.log(e.defaultPrevented);  // will be false
-    e.preventDefault();   // does nothing since the listener is passive
-    console.log(e.defaultPrevented);  // still false
-  }, Modernizr.passiveeventlisteners ? {passive: true} : false);
+  pTable = prod => {
+    let row = [];
 
-  86400000 == 1000*60*60*24 (msecs -> secs -> mins -> hours)*/
-  handleDate = e => {
-    let selectedDate = e.target.value;
-    selectedDate = Date.parse(selectedDate);
-    const stateDate = this.state.date.getTime();
-    const days = Math.round(selectedDate / 86400000) % 7;
-    const val = 3;
-    if (selectedDate > stateDate) {
-      if (days !== val) {
-        console.log("we can deliver on:", e.target.value);
-        this.setState(state => ({
-          isToggleOn: !state.isToggleOn
-        }));
-      } else {
-        console.log("Sorry we don't deliver on Sundays:", e.target.value);
-        this.setState({
-          isToggleOn: "0"
-        });
-      }
-    } else {
-      console.log("date selected is in the past:", e.target.value);
-      this.setState({
-        isToggleOn: "0"
-      });
-    }
+    prod.size.forEach(drink => {
+      //console.log("The size", size);
 
-    console.log("Prevent Default: ", e.preventDefault);
-  };
-
-  changeOption = () => {
-    if (this.state.select === "pickup") {
-      if (this.state.isToggleOn === "0") {
-        var model1 = [];
-        model1.push(
-          <div key={model1.toString()}>
-            Sorry we can not deliver on the date selected
-          </div>
-        );
-      }
-
-      return (
-        <div>
-          <Row>
-            <div>
+      row.push(
+        <tr key={row.toString()}>
+          <td>{drink.size}</td>
+          <td>
+            <dt>{drink.price}</dt>
+            <dt>{drink.cprice}</dt>
+          </td>
+          <td>
+            <dt>
               <label>
-                <b>
-                  Store Location: <Icon left>store</Icon>
-                </b>
-                Port Harcourt, Nigeria
-              </label>
-            </div>
-          </Row>
-          <Row>
-            <div>
-              <label>
-                <b>
-                  Tel: <Icon left>phone</Icon>
-                </b>
-                +2348030000000
-              </label>
-            </div>
-          </Row>
-          <Row>
-            {model1}
-            <div>
-              <span>
-                <Icon left>schedule</Icon>
                 <input
-                  style={{ width: "35%" }}
-                  name="selectedDate"
-                  type="date"
-                  onChange={this.handleDate}
+                  type="radio"
+                  name="drink-size"
+                  value={prod.name + " " + drink.size}
+                  background-color="orange"
+                  checked={
+                    this.state.selectedOption === prod.name + " " + drink.size
+                  }
+                  onChange={this.handleOnChange}
                 />
-              </span>
-            </div>
-          </Row>
-        </div>
-      );
-    }
-    if (this.state.select === "delivery") {
-      if (this.state.isToggleOn === "0") {
-        model1 = [];
-        model1.push(
-          <div key={model1.toString()}>
-            Sorry we can not deliver on the date selected
-          </div>
-        );
-      }
-      return (
-        <div>
-          <Row>
-            <Input s={16} label="Delivery Address" validate>
-              <Icon>home</Icon>
-            </Input>
-          </Row>
-          <Row>
-            <div style={{ padding: "0.75rem" }}>
-              <div>{model1}</div>
-              <div>
-                <Icon left>schedule</Icon>
-                <input
-                  style={{ width: "35%" }}
-                  name="selectedDate"
-                  type="date"
-                  onChange={this.handleDate}
-                />
-              </div>
-            </div>
-          </Row>
-        </div>
-      );
-    }
-  };
+                <span>{drink.size} Single bottle</span>
+              </label>
+            </dt>
 
+            <dt>
+              <label>
+                <input
+                  type="radio"
+                  name="drink-size"
+                  value={prod.name + " " + drink.crate}
+                  background-color="orange"
+                  checked={
+                    this.state.selectedOption === prod.name + " " + drink.crate
+                  }
+                  onChange={this.handleOnChange}
+                />
+                <span>{drink.crate} </span>
+              </label>
+            </dt>
+          </td>
+        </tr>
+      );
+    });
+
+    return (
+      <React.Fragment>
+        <tbody>{row}</tbody>
+      </React.Fragment>
+    );
+  };
   render() {
+    console.log("Product: ", datas[0].name);
     return (
       <div>
-        <div>
-          <form>
-            <div className="form-check">
-              {this.changeOption()}
-              <div>
-                <label>
-                  <input
-                    name="option"
-                    type="radio"
-                    value="pickup"
-                    checked={this.state.select === "pickup"}
-                    onChange={this.handleOnSelect}
-                    className="form-check-input"
-                  />
-                  <span>Pick Up</span>
-                </label>
-
-                <label>
-                  <input
-                    name="option"
-                    type="radio"
-                    value="delivery"
-                    checked={this.state.select === "delivery"}
-                    onChange={this.handleOnSelect}
-                  />
-                  <span>Delivery</span>
-                </label>
-              </div>
-
-              <div style={{ fontWeight: "bold", fontSize: "2em" }}>
-                Contact Info
-              </div>
-              <Row>
-                <Input s={16} label="Name" validate>
-                  <Icon>account_circle</Icon>
-                </Input>
-              </Row>
-              <Row>
-                <Input s={16} label="Telephone" validate type="tel">
-                  <Icon>phone</Icon>
-                </Input>
-              </Row>
-
-              <Row>
-                <Input s={16} label="Email (optional)" validate>
-                  <Icon>email</Icon>
-                </Input>
-              </Row>
-            </div>
-          </form>
-          <div style={{ fontWeight: "bold", fontSize: "2em" }}>
-            Order Number: <OrderNumber />
-          </div>
-        </div>
+        <div>{datas[0].name}</div>
+        <Row>
+          <Col>
+            <span>
+              <img src={image} alt="noimage" height="120" width="160" />
+            </span>
+          </Col>
+          <Col>
+            <React.Fragment>
+              {datas.map(data => (
+                <table key={data.toString()}>{this.pTable(data)}</table>
+              ))}
+            </React.Fragment>
+          </Col>
+        </Row>
       </div>
     );
   }

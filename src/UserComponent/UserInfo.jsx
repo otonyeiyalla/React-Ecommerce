@@ -137,18 +137,13 @@ class UserInfo extends Component {
             <Row>
               <div style={{ padding: "0.75rem" }}>
                 <div>{model1}</div>
-                <div onScroll={this.onScrollThatCallsPreventDefault}>
+                <div>
                   <Icon left>schedule</Icon>
                   <input
                     style={{ width: "35%" }}
                     name="selectedDate"
                     type="date"
                     onChange={this.handleDate}
-                    onScroll={{
-                      passive: true,
-                      capture: true,
-                      handler: this.onScrollThatJustListens
-                    }}
                   />
                 </div>
               </div>

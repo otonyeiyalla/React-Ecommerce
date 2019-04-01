@@ -8,7 +8,7 @@
 
 
 .App {
-    text-align: center;
+    /* text-align: center; */
     min-height: 100vh;
     /** FOR FONT COLOUR **/
     color: white;
@@ -70,8 +70,6 @@ td {
 }
 
 .split {
-
-
     height: 85%;
     position: fixed;
     border-radius: 25px;
@@ -79,6 +77,7 @@ td {
 }
 
 .left {
+    text-align: center;
     overflow: auto;
     left: 1em;
     border: solid red;
@@ -89,8 +88,9 @@ td {
 .right {
     right: 1em;
     border: solid green;
-    width: 55%;
+    max-width: 55%;
     padding-left: 2px;
+
 }
 
 .body-component {
@@ -98,7 +98,18 @@ td {
     padding-top: 1em;
 }
 
+.grid-row {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+}
+
 /*
+.container {
+    max-width: 55%;
+    margin: 0 auto;
+}
+
 #drinks-component {
     align-content: left;
 }

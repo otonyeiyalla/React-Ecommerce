@@ -1,12 +1,11 @@
-/*
 #drinks-component {
-    align-content: left;
+    padding: .5em;
 }
-*/
+
 
 .drink-component {
     width: 5em;
     height: 7em;
     border-radius: 25px;
-    background-image: url("drink1.png");
+    /* background-image: url("drink1.png"); */
 }
