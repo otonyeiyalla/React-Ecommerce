@@ -113,48 +113,48 @@ class DrinksInfo extends Component {
               </Table>
             </Col>
           </Row>
-          <Row>
-            <Col s={5}>
-              <div>
-                <Button waves="light" id="add-btn">
-                  ADD DRINK<Icon right>add</Icon>
-                </Button>
-
-                <Button
-                  waves="red"
-                  id="cancel-btn"
-                  onClick={this.props.isToggleOn}
-                >
-                  CANCEL<Icon right>cancel</Icon>
-                </Button>
-              </div>
-            </Col>
-            <Col s={5}>
-              <div style={this.styles}>
-                Quantity
-                <div>
-                  <button
-                    onClick={this.props.onIncrease}
-                    className="chip"
-                    style={{ backgroundColor: "lightgreen" }}
-                  >
-                    <Icon small>add</Icon>
-                  </button>
-                  <span className="chip" id="quantity-btn">
-                    {this.props.onCheckValue}
-                  </span>
-                  <button
-                    onClick={this.props.onDecrease}
-                    className="chip"
-                    style={{ backgroundColor: "lightcoral" }}
-                  >
-                    <Icon small>remove</Icon>
-                  </button>
-                </div>
-              </div>
-            </Col>
-          </Row>
         </form>
+        <Row>
+          <Col s={5}>
+            <div>
+              <Button waves="light" id="add-btn">
+                ADD DRINK<Icon right>add</Icon>
+              </Button>
+
+              <Button
+                waves="red"
+                id="cancel-btn"
+                onClick={this.props.isToggleOn}
+              >
+                CANCEL<Icon right>cancel</Icon>
+              </Button>
+            </div>
+          </Col>
+          <Col s={5}>
+            <div style={this.styles}>
+              Quantity
+              <div>
+                <button
+                  onClick={this.props.onIncrease}
+                  className="chip"
+                  style={{ backgroundColor: "lightgreen" }}
+                >
+                  <Icon small>add</Icon>
+                </button>
+                <span className="chip" id="quantity-btn">
+                  {this.props.onCheckValue}
+                </span>
+                <button
+                  onClick={this.props.onDecrease}
+                  className="chip"
+                  style={{ backgroundColor: "lightcoral" }}
+                >
+                  <Icon small>remove</Icon>
+                </button>
+              </div>
+            </div>
+          </Col>
+        </Row>
       </div>
     );
   }
